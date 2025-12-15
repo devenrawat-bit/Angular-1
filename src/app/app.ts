@@ -7,7 +7,7 @@ import { Signal } from "./component/signal/signal";
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, Admin, DataBinding, Signal],
-  templateUrl: './app.html',
+  templateUrl: './app.html', 
   styleUrl: './app.css'
 })
 export class App implements OnInit, AfterViewInit, OnDestroy {
