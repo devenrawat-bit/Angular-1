@@ -1,0 +1,26 @@
+<div (resize)="onWindowChange()">
+  <p>data-binding works!</p>
+  <input type="text" [value]="data" />
+  <input type="text" [attr.valuesd]="data" />
+  <input type="text" [value]="data1" />
+
+  <input type="text" [(ngModel)]="data1" />
+  <input type="checkbox" [(ngModel)]="isActive" />
+  <p>{{ isActive }}</p>
+  <!-- two way data binding   the above one is, but the value should be only data1 the same variable name -->
+
+  <!-- this above is the example of the property binding, another can be achieved with the help of the interpolation {{}}-->
+
+  <tr>
+    <td>
+      <button (click)="fire()">alert</button>
+    </td>
+  </tr>
+  <div (mouseenter)="fireMouse()">
+    <select (change)="showCityName()">
+      <option value="">dehradun</option>
+      <option value="">mumbai</option>
+      <option value="">hawaii</option>
+    </select>
+  </div>
+</div>
