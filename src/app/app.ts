@@ -14,7 +14,7 @@ import { ControlFlow } from './component/control-flow/control-flow';
 export class App implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     throw new Error('Method not implemented.');
-  } //the oninit here is the interface
+  } //the oninit here is the interface 
 
   protected readonly title = signal('App Sec');
 
