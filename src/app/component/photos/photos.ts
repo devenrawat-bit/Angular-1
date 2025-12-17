@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -9,27 +9,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './photos.html',
   styleUrl: './photos.css',
 })
-export class Photos implements OnInit {
+export class Photos {
 
-  test = signal(12);
+  test = 12;
 
-  /**
-   *
-   */
-  constructor() {
-    debugger;
-    this.getAllPhotos()
-    console.log("ctor", this.photosList);
-  }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.test.set(456);
-    }, 2000);
+    this.getAllPhotos()
   }
-
-
-
 
   //get call 
   photosList: any;
@@ -55,20 +42,20 @@ export class Photos implements OnInit {
   //at soon as the page will load this ngoninit will be called and that will trigger the call 
 
   getAllPhotos() {
-    debugger;
+
     this.http.get('https://jsonplaceholder.typicode.com/photos').subscribe((result: any) => {
       this.photosList = result;
-      // this.cdr.detectChanges();
+      this.cdr.detectChanges();
       console.log(this.photosList);
     })
   }
 
   //post call 
   postPhoto() {
-    // debugger;
+
     this.http.post('https://jsonplaceholder.typicode.com/photos', this.newPhoto).subscribe((result: any) => {
       alert('api call success');
-      // debugger;
+
     })
   }
 }
