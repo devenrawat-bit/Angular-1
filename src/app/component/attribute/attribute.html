@@ -1,0 +1,40 @@
+<p>attribute works!</p>
+<div class="row">
+    <div class="col-3">
+        <span>{{val()}}</span>
+    </div>
+</div>
+
+
+<div class="row" [ngStyle]="{backgroundColor:textColor, 'font-size':'15px'}">
+    <div class="col-4" (ngClass)="themeClass">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Name</th>
+                    <th>city</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(item of studentList; track $index)
+                {
+                <tr>
+                    <td [ngClass]="item.status ? 'bg-success' : 'bg-danger'">{{$index+'p'}}</td>
+
+                    <td [class]="item.status ? 'bg-success' : 'bg-danger'">{{item.name}}</td>
+                    <td>{{item.city}}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-3" [ngStyle]="myCss">
+        hey
+    </div>
+</div>

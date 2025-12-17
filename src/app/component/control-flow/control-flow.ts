@@ -8,7 +8,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './control-flow.css',
 })
 export class ControlFlow {
- select:string='';
- isStudentActive=signal<boolean>(false);
- 
+  select: string = '';
+  isStudentActive = signal<boolean>(false);
+
+  changeStatus(value: boolean) {
+    this.isStudentActive.set(value);
+  }
+
+  cityList = ["Pune", "Nagpur", ["Mumbai"]];
 }
+

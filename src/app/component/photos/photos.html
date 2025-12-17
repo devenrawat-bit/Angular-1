@@ -1,0 +1,82 @@
+<!-- <p>photos works!</p> -->
+<div class="row">
+    <div class="col-7">
+        <div class="card">
+            <p>{{test()}}</p>
+            <div class="card-header bg-warning">
+                photos List
+            </div>
+            <div class="card-body">
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Title</th>
+                            <th>Url</th>
+                            <th>Thumbnail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @for(item of photosList; track $index){
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.title}}</td>
+                            <td>{{item.url}}</td>
+                            <td>{{item.thumbnailUrl}}</td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card">
+            <div class="card-header bg-warning">
+                photos List
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Album Id </label>
+                            <input type="text" name="albumId" [(ngModel)]="newPhoto.albumId" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label>Title </label>
+                            <input type="text" name="title" [(ngModel)]="newPhoto.title" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label>URL </label>
+                            <input type="text" name="url" [(ngModel)]="newPhoto.url" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label>Thumbnail </label>
+                            <input type="text" name="thumbnailUrl" [(ngModel)]="newPhoto.thumbnailUrl"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="row pt-2">
+                        <div class="col-6 text-center">
+                            <div class="btn btn-secondary"> Reset</div>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="btn btn-success"> Save</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    @for(item of photosList; track $index)
+    {
+    <p>item.title</p>
+    }
+</div>
