@@ -20,7 +20,8 @@ export class Photos {
 
   //get call 
   photosList: any;
-  // test: any;
+
+
   //post api call 
   newPhoto: any = {
     "albumId": 0,
@@ -51,11 +52,17 @@ export class Photos {
   }
 
   //post call 
-  postPhoto() {
-
+  onSavePhoto() {
     this.http.post('https://jsonplaceholder.typicode.com/photos', this.newPhoto).subscribe((result: any) => {
       alert('api call success');
-
     })
+  }
+
+  onEdit(data: any) {
+    this.newPhoto = data;
+  }
+
+  onDelete() {
+
   }
 }
