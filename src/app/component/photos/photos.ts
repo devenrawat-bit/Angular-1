@@ -58,11 +58,27 @@ export class Photos {
     })
   }
 
+  //update call 
+  onUpdatePhoto() {
+    this.http.put('https://jsonplaceholder.typicode.com/posts'
+      + this.newPhoto.id, this.newPhoto).subscribe((result: any) => {
+        alert("data uploaded successfully");
+        this.getAllPhotos();
+      })
+  }
+
   onEdit(data: any) {
     this.newPhoto = data;
   }
 
-  onDelete() {
-
+  onDelete(id: any) {
+    //before directly deleting ask the user to confirm that you want to delete it or not 
+    const sure = confirm("Are you sure to Delete the record");
+    if (sure == true) {
+      this.http.delete('https://jsonplaceholder.typicode.com/posts/' + id).subscribe((result: any) => {
+        alert('api deleted successfully');
+        this.getAllPhotos();
+      })
+    }
   }
 }

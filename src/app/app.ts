@@ -6,11 +6,12 @@ import { Signal } from "./component/signal/signal";
 import { ControlFlow } from './component/control-flow/control-flow';
 import { Attribute } from './component/attribute/attribute';
 import { Photos } from './component/photos/photos';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [Admin, DataBinding, Signal, ControlFlow, Attribute, Photos, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [Admin, DataBinding, Signal, ControlFlow, Attribute, Photos, RouterOutlet, RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -20,6 +21,15 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   } //the oninit here is the interface 
 
   protected readonly title = signal('App Sec');
+  showNavbar = true;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showNavbar = !event.url.includes('/user');
+      }
+    });
+  }
 
   ngOnInit(): void { //this the lifecycle 
     console.log('app component initialized');

@@ -1,1 +1,40 @@
-<p>user works!</p>
+<div class="user-container">
+    <div class="user-card">
+        <h2 class="user-title">Create Account</h2>
+        <p class="user-subtitle">Secure & fast registration</p>
+
+        <form [formGroup]="userForm" class="user-form">
+            <!-- Full Name -->
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" formControlName="fullName" placeholder="Enter your full name" />
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" formControlName="emailId" placeholder="test@gmail.com" />
+            </div>
+
+            <!-- Mobile -->
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="tel" formControlName="mobileNo" placeholder="10-digit mobile number" />
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" formControlName="password" />
+            </div>
+
+            <!-- Hidden userId -->
+            <input type="hidden" formControlName="userId" />
+
+            <!-- Submit -->
+            <button type="submit" class="submit-btn" (click)="onSaveUser()">Register</button>
+        </form>
+
+        <p class="user-footer">By continuing, you agree to our terms & privacy policy</p>
+    </div>
+</div>

@@ -27,11 +27,10 @@
                             <td>{{item.thumbnailUrl}}</td>
                             <td>
                                 <button class="btn btn-sm btn-success" (click)="onEdit(item)">Edit</button>
-                                <button class="btn btn-sm btn-danger" (click)="onDelete()">Delete</button>
+                                <button class="btn btn-sm btn-danger" (click)="onDelete(item.id)">Delete</button>
                             </td>
                         </tr>
                         }
-
                     </tbody>
                 </table>
             </div>
@@ -69,7 +68,14 @@
                             <div class="btn btn-secondary"> Reset</div>
                         </div>
                         <div class="col-6 text-center">
-                            <div class="btn btn-success" (click)="onSavePhoto()"> Save</div>
+                            @if(newPhoto.id==0)
+                            {
+                            <button class="btn btn-success" (click)="onSavePhoto()"> Save</button>
+                            }
+                            @else{
+                            <button class="btn btn-success" (click)="onUpdatePhoto()"> Update</button>
+                            <!-- now for updation another api call will be required -->
+                            }
                         </div>
                     </div>
                 </form>
