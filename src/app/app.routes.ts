@@ -13,7 +13,6 @@ export const routes: Routes = [
         redirectTo: 'data-binding',
         pathMatch: 'full'
     },
-
     {
         path: 'controlflow',
         component: ControlFlow

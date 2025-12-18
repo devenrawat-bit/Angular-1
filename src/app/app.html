@@ -5,7 +5,8 @@
 <app-control-flow></app-control-flow>
 <app-attribute></app-attribute> -->
 
-<nav *ngIf="showNavbar" class="navbar navbar-expand-sm navbar-dark bg-dark">
+@if (showNavbar) {
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="javascript:void(0)">Logo</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -33,5 +34,6 @@
         </div>
     </div>
 </nav>
+}
 
 <router-outlet></router-outlet>

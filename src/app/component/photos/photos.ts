@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-photos',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, JsonPipe],
   templateUrl: './photos.html',
   styleUrl: './photos.css',
 })
@@ -26,9 +26,9 @@ export class Photos {
   newPhoto: any = {
     "albumId": 0,
     "id": 0,
-    "title": "test",
-    "url": "test",
-    "thumbnailUrl": "test"
+    "title": "",
+    "url": "",
+    "thumbnailUrl": ""
   }
 
 
@@ -60,7 +60,7 @@ export class Photos {
 
   //update call 
   onUpdatePhoto() {
-    this.http.put('https://jsonplaceholder.typicode.com/posts'
+    this.http.put('https://jsonplaceholder.typicode.com/posts/'
       + this.newPhoto.id, this.newPhoto).subscribe((result: any) => {
         alert("data uploaded successfully");
         this.getAllPhotos();

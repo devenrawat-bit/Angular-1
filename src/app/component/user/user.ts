@@ -12,7 +12,7 @@ export class User {
   http = inject(HttpClient);//to make the api calls 
 
   userForm = new FormGroup({
-    userId: new FormControl(1),
+    userId: new FormControl(0),
     emailId: new FormControl(''),
     password: new FormControl(''),
     fullName: new FormControl(''),
@@ -31,10 +31,11 @@ export class User {
 
   onSaveUser() {
     const formVal = this.userForm.value;
-    this.http.post('/api/GoalTracker/register', formVal).subscribe({
+    this.http.post('/api/SmartParking/register', formVal).subscribe({
       next: (res: any) => {
         alert("User registered successfully!");
-        this.userForm.reset({ userId: 1 });
+        console.log('Response:', res);
+        this.userForm.reset({ userId: 0 });
       },
       error: (err) => {
         console.error('Registration failed:', err);
