@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule, JsonPipe } from '@angular/common';
 
 @Component({
@@ -12,7 +12,7 @@ import { CommonModule, JsonPipe } from '@angular/common';
 export class Photos {
 
   test = 12;
-
+isFormSubmitted:boolean=false;
 
   ngOnInit() {
     this.getAllPhotos()
@@ -43,7 +43,6 @@ export class Photos {
   //at soon as the page will load this ngoninit will be called and that will trigger the call 
 
   getAllPhotos() {
-
     this.http.get('https://jsonplaceholder.typicode.com/photos').subscribe((result: any) => {
       this.photosList = result;
       this.cdr.detectChanges();
@@ -52,10 +51,17 @@ export class Photos {
   }
 
   //post call 
-  onSavePhoto() {
-    this.http.post('https://jsonplaceholder.typicode.com/photos', this.newPhoto).subscribe((result: any) => {
-      alert('api call success');
-    })
+  onSavePhoto(form:NgForm) {
+    this.isFormSubmitted=true;
+    if(form.valid)
+    {
+      //then only we will make the api call 
+      this.http.post('https://jsonplaceholder.typicode.com/photos', this.newPhoto).subscribe((result: any) => {
+        alert('api call success');
+      })
+      form.reset(); //to reset the value, once the form got submitted, but will again then show the validation 
+      this.isFormSubmitted=false; //to prevent the validation message again after submitting 
+    }
   }
 
   //update call 

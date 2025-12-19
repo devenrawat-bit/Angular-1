@@ -35,7 +35,8 @@
     <div class="card">
       <div class="card-header bg-warning">photos List</div>
       <div class="card-body">
-        <form>
+        <form #form="ngForm">
+          <!-- this should be exactly matched with the form below  -->
           {{ newPhoto.id }}
           <div class="row">
             <!-- <div class="col-6">
@@ -56,7 +57,9 @@
               />
               <div class="text-danger">
                 <!-- {{titleTem.errors|json}} -->
-                @if(titleTem.touched || titleTem.dirty) { @if(titleTem.errors?.['required']) {
+                @if(titleTem.touched || titleTem.dirty ||isFormSubmitted) {
+                @if(titleTem.errors?.['required']) {
+                <!-- perviously it was true when we didnt setted up the isFormSubmitted it was true thats why we were seeing the validation message as we were in the if condition any one thing true will be true  -->
                 <span> This is required </span>
                 }@if(titleTem.errors?.['minlength']) {
                 <span> Minimum 5 char required </span>
@@ -76,7 +79,8 @@
               />
               <div class="text-danger">
                 <!-- {{urlTem.errors|json}} -->
-                @if(urlTem.touched || urlTem.dirty) { @if(urlTem.errors?.['required']) {
+                @if(urlTem.touched || urlTem.dirty ||isFormSubmitted) {
+                @if(urlTem.errors?.['required']) {
                 <span> This is required </span>
                 } @if(urlTem.errors?.['minlength']) {
                 <span> Minimum 20 char required </span>
@@ -95,7 +99,8 @@
                 class="form-control"
               />
               <div class="text-danger">
-                @if(thumbnailTem.touched ||thumbnailTem.dirty) {
+                @if(thumbnailTem.touched ||thumbnailTem.dirty ||isFormSubmitted) {
+                <!-- at first the isFormSubmitted is setted to false -->
                 @if(thumbnailTem.errors?.['required']) {
                 <span>This field is required</span>
                 } @if(thumbnailTem.errors?.['minlength']) {
@@ -110,7 +115,9 @@
             </div>
             <div class="col-6 text-center">
               @if(newPhoto.id==0) {
-              <button class="btn btn-success" (click)="onSavePhoto()">Save</button>
+              <button class="btn btn-success" (click)="onSavePhoto(form)" [disabled]="!form.valid">
+                Save
+              </button>
               } @else{
               <button class="btn btn-success" (click)="onUpdatePhoto()">Update</button>
               <!-- now for updation another api call will be required -->
