@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-user',
@@ -10,13 +11,25 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class User {
   http = inject(HttpClient);//to make the api calls 
+  userSrv=inject(UserService);
+ isFormSubmitted:boolean=false;
+
+/**
+ *
+//  */
+constructor() {
+  const result=this.userSrv.getSumOfTwo(1,2);
+  console.log(result);
+} 
+
+
 
   userForm = new FormGroup({
     userId: new FormControl(0),
-    emailId: new FormControl(''),
-    password: new FormControl(''),
-    fullName: new FormControl(''),
-    mobileNo: new FormControl('')
+    emailId: new FormControl('',[Validators.required,Validators.minLength(20),Validators.maxLength(20)]),
+    password: new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(20)]),
+    fullName: new FormControl('',[Validators.required,Validators.minLength(12),Validators.maxLength(20)]),
+    mobileNo: new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(20)])
   });
 
   // onSaveUser() {

@@ -46,7 +46,7 @@ isFormSubmitted:boolean=false;
     this.http.get('https://jsonplaceholder.typicode.com/photos').subscribe((result: any) => {
       this.photosList = result;
       this.cdr.detectChanges();
-      console.log(this.photosList);
+      console.log(this.photosList); 
     })
   }
 

@@ -55,16 +55,17 @@
                 [(ngModel)]="newPhoto.title"
                 class="form-control"
               />
+              <!-- {{titleTem.errors|json}} -->
+              @if(titleTem.touched || titleTem.dirty ||isFormSubmitted) {
               <div class="text-danger">
-                <!-- {{titleTem.errors|json}} -->
-                @if(titleTem.touched || titleTem.dirty ||isFormSubmitted) {
                 @if(titleTem.errors?.['required']) {
                 <!-- perviously it was true when we didnt setted up the isFormSubmitted it was true thats why we were seeing the validation message as we were in the if condition any one thing true will be true  -->
                 <span> This is required </span>
                 }@if(titleTem.errors?.['minlength']) {
                 <span> Minimum 5 char required </span>
-                } }
+                }
               </div>
+              }
             </div>
             <div class="col-6">
               <label>URL </label>
